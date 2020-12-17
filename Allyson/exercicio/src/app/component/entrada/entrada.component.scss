@@ -1,15 +1,17 @@
-.campo {
+.conteudo {
+    border: 1px solid #673ab7;
     width: 50vw;
-    margin: 0 auto;
-    padding: 15px;
-    position: relative;
-    border: 1px solid #ccc;
-    font-family: arial, sans-serif;
+    margin: 3rem auto;
+    max-width: 500px;
 }
 
-.orienta {
-    display: flex;
-    justify-content: space-between;
+mat-form-field {
+    width: 80%;
+}
+
+.campo {
+    padding: 15px;
+    font-family: arial, sans-serif;
 }
 
 .title {
@@ -17,6 +19,8 @@
 }
 
 .icone {
+    position: relative;
+    display: inline-block;
     cursor: pointer;
 }
 
@@ -25,7 +29,6 @@
 }
 
 .campo_input {
-    width: calc(100% - 15px);
     height: 25px;
 }
 
@@ -44,9 +47,14 @@
 
     position: absolute;
     top: 0;
-    right: -75px;
+    background-color: #673ab7;
+    color: white;
 }
 
 .mostraDescricao {
     opacity: 1;
+}
+
+.erro {
+    color: #f44336;
 }

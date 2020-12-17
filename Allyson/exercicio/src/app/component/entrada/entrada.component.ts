@@ -1,14 +1,36 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+enum ValidaType {
+  ERROR,
+  WARNING
+}
+
+interface IEntradaOptions {
+  title: string;
+  descricao: string;
+}
+
+interface ICampoOptions {
+  tipo_erro: ValidaType;
+  valida_erro: boolean;
+  value: string;
+  saida: string;
+  onKey: (any)=>string;
+  valida(): boolean;
+}
+
 @Component({
   selector: 'app-entrada',
   templateUrl: './entrada.component.html',
   styleUrls: ['./entrada.component.scss']
 })
-export class EntradaComponent implements OnInit {
+
+export class EntradaComponent implements OnInit, IEntradaOptions, ICampoOptions {
   @Input() title: string;
   @Input() descricao: string;
-  msg_erro: string;
+
+  tipo_erro: ValidaType  = ValidaType.ERROR;
+  valida_erro: boolean;
   value: string = '';
   saida: string = '';
 
@@ -17,42 +39,13 @@ export class EntradaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // ao clicar no input a variável 'value' recebe o valor do input
-  onKey(event: any){
-    this.value = event.target.value;
-
-    if(this.title === 'telefone') {
-      if(this.value.length === 1) {
-        this.saida = '(' + this.value;
-      }
-      if(this.value.length === 3) {
-        this.saida = this.value + ') ';
-      }
-      if(this.value.length === 6) {
-        this.saida = this.value + ' ';
-      }
-      if(this.value.length === 11) {
-        this.saida = this.value + '-';
-      }
-      if(this.value.length >= 17) {
-        return this.msg_erro = `${this.title} tamanho do telefone incorreto.`;
-      }else {
-        return this.msg_erro = '';
-      }
-    }
+  onKey(event) {
+    return '';
   }
 
-  // ao desfocar o input, é feita a verificação se está vazio ou se possui mais de vinte caracteres
   valida() {
-    if(this.title === 'nome') {
-      if(this.value.length >= 20){
-        return this.msg_erro = `${this.title} deve ter menos de vinte caracteres.`;
-      }
+    if(this.value == ''){
+      return this.valida_erro = true;
     }
-    if(this.value === '') {
-      return this.msg_erro = `${this.title} não deve estar vazio.`;
-    }
-
-    return this.msg_erro = '';
   }
 }
