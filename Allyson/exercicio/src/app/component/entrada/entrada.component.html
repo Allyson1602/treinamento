@@ -1,0 +1,11 @@
+<mat-form-field class="campo">
+    <div class="orienta">
+        <mat-label class="title">{{title}}:</mat-label>
+        <span class="icone">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+            <span class="descricao">{{descricao}}</span> <!-- ao mover o mouse sobre 'ajuda', mostra a descrição -->
+        </span>
+    </div>
+    <input (keyup)="onKey($event)" (blur)="valida()" value={{saida}} class="campo_input" matInput />
+    <mat-error class="erro"><b>{{msg_erro}}</b></mat-error>
+</mat-form-field>
